@@ -13,3 +13,4 @@ chrono = "0.4"
 clap = { version = "3.2.5", features = ["derive"] }
 diesel = { version = "1.4.8", features = ["chrono", "sqlite"] }
 diesel_migrations = { version = "1.4.0" }
+oplfs_derive = { path = "./oplfs_derive" }

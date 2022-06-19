@@ -217,6 +217,15 @@ dependencies = [
  "clap",
  "diesel",
  "diesel_migrations",
+ "oplfs_derive",
+]
+
+[[package]]
+name = "oplfs_derive"
+version = "0.1.0"
+dependencies = [
+ "quote",
+ "syn",
 ]
 
 [[package]]
