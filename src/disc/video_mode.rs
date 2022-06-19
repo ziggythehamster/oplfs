@@ -1,13 +1,8 @@
-use diesel::backend::Backend;
-use diesel::deserialize;
-use diesel::serialize;
-use diesel::sql_types::Text;
-use diesel::types::{ToSql, FromSql};
 use std::convert::TryFrom;
-use std::io::Write;
+use std::fmt;
 
 /// The video mode of a disc
-#[derive(AsExpression, Clone, Copy, Debug)]
+#[derive(AsExpression, Clone, Copy, Debug, PartialEq, SqlStringEnum)]
 #[sql_type = "Text"]
 pub enum VideoMode {
     /// Supports multiple video modes
@@ -20,7 +15,33 @@ pub enum VideoMode {
     PAL
 }
 
+/// Convert a video mode into a string
+///
+/// # Examples
+///
+/// ```
+/// use oplfs::VideoMode;
+/// assert_eq!(VideoMode::NTSC.to_string(), "NTSC");
+/// ```
+impl fmt::Display for VideoMode {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            VideoMode::Multi => write!(f, "multi"),
+            VideoMode::NTSC  => write!(f, "NTSC"),
+            VideoMode::PAL   => write!(f, "PAL")
+        }
+    }
+}
+
 /// Attempt to convert a string into a video mode
+///
+/// # Examples
+///
+/// ```
+/// use oplfs::VideoMode;
+/// let v = VideoMode::try_from(String::from("NTSC"));
+/// assert_eq!(v.unwrap(), VideoMode::NTSC);
+/// ```
 impl TryFrom<String> for VideoMode {
     type Error = Box<(dyn std::error::Error + Send + Sync + 'static)>;
 
@@ -30,6 +51,14 @@ impl TryFrom<String> for VideoMode {
 }
 
 /// Attempt to convert a string into a video mode
+///
+/// # Examples
+///
+/// ```
+/// use oplfs::VideoMode;
+/// let v = VideoMode::try_from("NTSC");
+/// assert_eq!(v.unwrap(), VideoMode::NTSC);
+/// ```
 impl TryFrom<&str> for VideoMode {
     type Error = Box<(dyn std::error::Error + Send + Sync + 'static)>;
 
@@ -40,30 +69,6 @@ impl TryFrom<&str> for VideoMode {
             "PAL"   => Ok(VideoMode::PAL),
             x => Err(format!("unrecognized video mode {}", x).into())
         }
-    }
-}
-
-/// Deserialize the video mode from a database text field
-impl<DB> FromSql<Text, DB> for VideoMode
-where DB: Backend,
-      String: FromSql<Text, DB>
-{
-    fn from_sql(bytes: Option<&DB::RawValue>) -> deserialize::Result<Self> {
-        VideoMode::try_from(String::from_sql(bytes)?)
-    }
-}
-
-/// Serialize the video mode into a database text field
-impl<DB> ToSql<Text, DB> for VideoMode
-where DB: Backend,
-      str: ToSql<Text, DB>
-{
-    fn to_sql<W: Write>(&self, out: &mut serialize::Output<W, DB>) -> serialize::Result {
-        match self {
-            VideoMode::Multi => "multi",
-            VideoMode::NTSC  => "NTSC",
-            VideoMode::PAL   => "PAL"
-        }.to_sql(out)
     }
 }
 
