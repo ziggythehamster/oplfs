@@ -29,8 +29,8 @@ extern crate diesel;
 extern crate oplfs_derive;
 
 pub mod database;
+pub mod disc;
 mod schema;
-mod disc;
 
 #[doc(inline)]
-pub use disc::*;
+pub use disc::Disc;

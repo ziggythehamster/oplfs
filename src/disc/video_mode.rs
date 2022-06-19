@@ -20,7 +20,7 @@ pub enum VideoMode {
 /// # Examples
 ///
 /// ```
-/// use oplfs::VideoMode;
+/// use oplfs::disc::VideoMode;
 /// assert_eq!(VideoMode::NTSC.to_string(), "NTSC");
 /// ```
 impl fmt::Display for VideoMode {
@@ -38,7 +38,7 @@ impl fmt::Display for VideoMode {
 /// # Examples
 ///
 /// ```
-/// use oplfs::VideoMode;
+/// use oplfs::disc::VideoMode;
 /// let v = VideoMode::try_from(String::from("NTSC"))?;
 /// assert_eq!(v, VideoMode::NTSC);
 /// # Ok::<(), Box<(dyn std::error::Error + Send + Sync + 'static)>>(())
@@ -56,7 +56,7 @@ impl TryFrom<String> for VideoMode {
 /// # Examples
 ///
 /// ```
-/// use oplfs::VideoMode;
+/// use oplfs::disc::VideoMode;
 /// let v = VideoMode::try_from("NTSC")?;
 /// assert_eq!(v, VideoMode::NTSC);
 /// # Ok::<(), Box<(dyn std::error::Error + Send + Sync + 'static)>>(())

@@ -14,7 +14,7 @@ pub enum Platform {
 /// # Examples
 ///
 /// ```
-/// use oplfs::Platform;
+/// use oplfs::disc::Platform;
 /// assert_eq!(Platform::PS2.to_string(), "PS2");
 /// ```
 impl fmt::Display for Platform {
@@ -30,7 +30,7 @@ impl fmt::Display for Platform {
 /// # Examples
 ///
 /// ```
-/// use oplfs::Platform;
+/// use oplfs::disc::Platform;
 /// let p = Platform::try_from(String::from("PS2"))?;
 /// assert_eq!(p, Platform::PS2);
 /// # Ok::<(), Box<(dyn std::error::Error + Send + Sync + 'static)>>(())
@@ -48,7 +48,7 @@ impl TryFrom<String> for Platform {
 /// # Examples
 ///
 /// ```
-/// use oplfs::Platform;
+/// use oplfs::disc::Platform;
 /// let p = Platform::try_from("PS2")?;
 /// assert_eq!(p, Platform::PS2);
 /// # Ok::<(), Box<(dyn std::error::Error + Send + Sync + 'static)>>(())

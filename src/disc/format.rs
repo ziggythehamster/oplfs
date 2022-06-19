@@ -15,7 +15,7 @@ pub enum Format {
 /// # Examples
 ///
 /// ```
-/// use oplfs::Format;
+/// use oplfs::disc::Format;
 /// assert_eq!(Format::ISO.to_string(), "ISO");
 /// ```
 impl fmt::Display for Format {
@@ -31,7 +31,7 @@ impl fmt::Display for Format {
 /// # Examples
 ///
 /// ```
-/// use oplfs::Format;
+/// use oplfs::disc::Format;
 /// let f = Format::try_from(String::from("ISO"))?;
 /// assert_eq!(f, Format::ISO);
 /// # Ok::<(), Box<(dyn std::error::Error + Send + Sync + 'static)>>(())
@@ -49,7 +49,7 @@ impl TryFrom<String> for Format {
 /// # Examples
 ///
 /// ```
-/// use oplfs::Format;
+/// use oplfs::disc::Format;
 /// let f = Format::try_from("ISO")?;
 /// assert_eq!(f, Format::ISO);
 /// # Ok::<(), Box<(dyn std::error::Error + Send + Sync + 'static)>>(())

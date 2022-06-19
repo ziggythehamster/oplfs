@@ -16,7 +16,7 @@ pub enum Media {
 /// # Examples
 ///
 /// ```
-/// use oplfs::Media;
+/// use oplfs::disc::Media;
 /// assert_eq!(Media::CD.to_string(), "CD");
 /// ```
 impl fmt::Display for Media {
@@ -33,7 +33,7 @@ impl fmt::Display for Media {
 /// # Examples
 ///
 /// ```
-/// use oplfs::Media;
+/// use oplfs::disc::Media;
 /// let m = Media::try_from(String::from("CD"))?;
 /// assert_eq!(m, Media::CD);
 /// # Ok::<(), Box<(dyn std::error::Error + Send + Sync + 'static)>>(())
@@ -51,7 +51,7 @@ impl TryFrom<String> for Media {
 /// # Examples
 ///
 /// ```
-/// use oplfs::Media;
+/// use oplfs::disc::Media;
 /// let m = Media::try_from("CD")?;
 /// assert_eq!(m, Media::CD);
 /// # Ok::<(), Box<(dyn std::error::Error + Send + Sync + 'static)>>(())
