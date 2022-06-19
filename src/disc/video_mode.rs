@@ -39,8 +39,9 @@ impl fmt::Display for VideoMode {
 ///
 /// ```
 /// use oplfs::VideoMode;
-/// let v = VideoMode::try_from(String::from("NTSC"));
-/// assert_eq!(v.unwrap(), VideoMode::NTSC);
+/// let v = VideoMode::try_from(String::from("NTSC"))?;
+/// assert_eq!(v, VideoMode::NTSC);
+/// # Ok::<(), Box<(dyn std::error::Error + Send + Sync + 'static)>>(())
 /// ```
 impl TryFrom<String> for VideoMode {
     type Error = Box<(dyn std::error::Error + Send + Sync + 'static)>;
@@ -56,8 +57,9 @@ impl TryFrom<String> for VideoMode {
 ///
 /// ```
 /// use oplfs::VideoMode;
-/// let v = VideoMode::try_from("NTSC");
-/// assert_eq!(v.unwrap(), VideoMode::NTSC);
+/// let v = VideoMode::try_from("NTSC")?;
+/// assert_eq!(v, VideoMode::NTSC);
+/// # Ok::<(), Box<(dyn std::error::Error + Send + Sync + 'static)>>(())
 /// ```
 impl TryFrom<&str> for VideoMode {
     type Error = Box<(dyn std::error::Error + Send + Sync + 'static)>;
