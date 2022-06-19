@@ -34,8 +34,9 @@ impl fmt::Display for Media {
 ///
 /// ```
 /// use oplfs::Media;
-/// let m = Media::try_from(String::from("CD"));
-/// assert_eq!(m.unwrap(), Media::CD);
+/// let m = Media::try_from(String::from("CD"))?;
+/// assert_eq!(m, Media::CD);
+/// # Ok::<(), Box<(dyn std::error::Error + Send + Sync + 'static)>>(())
 /// ```
 impl TryFrom<String> for Media {
     type Error = Box<(dyn std::error::Error + Send + Sync + 'static)>;
@@ -51,8 +52,9 @@ impl TryFrom<String> for Media {
 ///
 /// ```
 /// use oplfs::Media;
-/// let m = Media::try_from("CD");
-/// assert_eq!(m.unwrap(), Media::CD);
+/// let m = Media::try_from("CD")?;
+/// assert_eq!(m, Media::CD);
+/// # Ok::<(), Box<(dyn std::error::Error + Send + Sync + 'static)>>(())
 /// ```
 impl TryFrom<&str> for Media {
     type Error = Box<(dyn std::error::Error + Send + Sync + 'static)>;
