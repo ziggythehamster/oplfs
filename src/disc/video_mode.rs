@@ -25,15 +25,11 @@ impl TryFrom<String> for VideoMode {
     type Error = Box<(dyn std::error::Error + Send + Sync + 'static)>;
 
     fn try_from(value: String) -> Result<Self, Self::Error> {
-        match value.as_str() {
-            "multi" => Ok(VideoMode::Multi),
-            "NTSC"  => Ok(VideoMode::NTSC),
-            "PAL"   => Ok(VideoMode::PAL),
-            x => Err(format!("unrecognized video mode {}", x).into())
-        }
+        VideoMode::try_from(value.as_str())
     }
 }
 
+/// Attempt to convert a string into a video mode
 impl TryFrom<&str> for VideoMode {
     type Error = Box<(dyn std::error::Error + Send + Sync + 'static)>;
 
