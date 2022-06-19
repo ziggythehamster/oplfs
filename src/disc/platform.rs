@@ -31,8 +31,9 @@ impl fmt::Display for Platform {
 ///
 /// ```
 /// use oplfs::Platform;
-/// let p = Platform::try_from(String::from("PS2"));
-/// assert_eq!(p.unwrap(), Platform::PS2);
+/// let p = Platform::try_from(String::from("PS2"))?;
+/// assert_eq!(p, Platform::PS2);
+/// # Ok::<(), Box<(dyn std::error::Error + Send + Sync + 'static)>>(())
 /// ```
 impl TryFrom<String> for Platform {
     type Error = Box<(dyn std::error::Error + Send + Sync + 'static)>;
@@ -48,8 +49,9 @@ impl TryFrom<String> for Platform {
 ///
 /// ```
 /// use oplfs::Platform;
-/// let p = Platform::try_from("PS2");
-/// assert_eq!(p.unwrap(), Platform::PS2);
+/// let p = Platform::try_from("PS2")?;
+/// assert_eq!(p, Platform::PS2);
+/// # Ok::<(), Box<(dyn std::error::Error + Send + Sync + 'static)>>(())
 /// ```
 impl TryFrom<&str> for Platform {
     type Error = Box<(dyn std::error::Error + Send + Sync + 'static)>;
