@@ -4,10 +4,11 @@ use std::env;
 use std::error::Error;
 use std::path::PathBuf;
 
+use crate::crawler;
 use crate::database;
 
 /// String printed after help
-const AFTER_HELP: &'static str = "For more help and setup examples, please see the README. This is open source software, see LICENSE for more information.";
+const AFTER_HELP: &str = "For more help and setup examples, please see the README. This is open source software, see LICENSE for more information.";
 
 /// oplfs global CLI options
 #[derive(Parser, Debug)]
@@ -25,8 +26,8 @@ struct Cli {
 /// Subcommands for oplfs
 #[derive(Debug, Subcommand)]
 enum Commands {
-    /// Adds discs to the index
-    Add {
+    /// Scans a directory for disc images and adds/updates them in the database
+    Scan {
         /// The path to crawl recursively
         #[clap(value_parser)]
         path: PathBuf
@@ -52,10 +53,8 @@ pub fn run() -> Result<(), Box<dyn Error>> {
 
     // Deal with subcommands
     match &cli.command {
-        Commands::Add { path } => {
-            println!("Crawling {}", path.to_string_lossy());
+        Commands::Scan { path } => {
+            crawler::crawl(&db_connection, path)
         }
     }
-
-    Ok(())
 }
