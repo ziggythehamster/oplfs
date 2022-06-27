@@ -12,6 +12,7 @@ extern crate oplfs_derive;
 pub mod cli;
 pub mod database;
 pub mod disc;
+mod crawler;
 mod schema;
 
 #[doc(inline)]
