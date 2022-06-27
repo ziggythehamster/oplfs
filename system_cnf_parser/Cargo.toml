@@ -1,0 +1,16 @@
+[package]
+name = "system_cnf_parser"
+version = "0.1.0"
+authors = ["Keith Gable <keith@ziggythehamster.sh>"]
+description = "PS1/PS2 SYSTEM.CNF parser"
+license = "MIT"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+ascii = "1.0"
+delegate = "0.7.0"
+derive_more = "0.99.17"
+lazy_static = "1.4.0"
+regex = "1"
