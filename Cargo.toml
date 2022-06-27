@@ -9,8 +9,13 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+ascii = "1.0"
 chrono = "0.4"
 clap = { version = "3.2.5", features = ["derive"] }
+compress-tools = "0.12.2"
 diesel = { version = "1.4.8", features = ["chrono", "sqlite"] }
 diesel_migrations = { version = "1.4.0" }
 oplfs_derive = { path = "./oplfs_derive" }
+owo-colors = "3"
+scan_dir = "0.3"
+system_cnf_parser = { path = "./system_cnf_parser" }
