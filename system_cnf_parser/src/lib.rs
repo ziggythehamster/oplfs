@@ -73,9 +73,21 @@ impl SystemCnf {
     ///
     /// # Ok::<(), Box<(dyn std::error::Error + Send + Sync + 'static)>>(())
     /// ```
+    ///
+    /// With the BOOT2 line from Gauntlet - Seven Sorrows:
+    ///
+    /// ```
+    /// use ascii::*;
+    /// use system_cnf_parser::SystemCnf;
+    ///
+    /// let system_cnf = "BOOT2 = cdrom0:\\SLUS_210.77;1    \n".into_ascii_string()?;
+    ///
+    /// assert_eq!(SystemCnf::from(&system_cnf).title_id().unwrap(), "SLUS_210.77");
+    ///
+    /// # Ok::<(), Box<(dyn std::error::Error + Send + Sync + 'static)>>(())
     pub fn title_id(&self) -> Option<&str> {
         self.0.get(*BOOT2_KEY).and_then(|boot2| {
-            if let Some(captures) = TITLE_ID_RE.captures(boot2.as_str()) {
+            if let Some(captures) = TITLE_ID_RE.captures(boot2.trim().as_str()) {
                 captures.name("title_id").map(|c| c.as_str())
             } else {
                 None
